@@ -37,7 +37,7 @@ namespace CrudTest.Application.Services
             return result;
         }
 
-        public async Task<StudentDto> GetStudent(int Id)
+        public async Task<StudentDto?> GetStudent(int Id)
         {
             var student = await _studentrepository.GetStudent(Id);
             if(student is null)
@@ -55,7 +55,7 @@ namespace CrudTest.Application.Services
             return result;
         }
 
-        public async Task<StudentDto> UpdateStudent(int Id, StudentDto dto)
+        public async Task<StudentDto?> UpdateStudent(int Id, StudentDto dto)
         {
             var student = await _studentrepository.GetStudent(Id);
             if(student is null)

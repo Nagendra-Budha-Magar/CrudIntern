@@ -18,10 +18,9 @@ namespace CrudTest.Application.Repositories
             return entity;
         }
 
-        public async Task<Student> GetStudent(int Id)
+        public async Task<Student?> GetStudent(int Id)
         {
-            var student = await _context.Students.FindAsync(Id);
-            return student;
+            return await _context.Students.FindAsync(Id);
         }
 
         public async Task UpdateStudent(Student student)
