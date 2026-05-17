@@ -34,7 +34,7 @@ namespace CrudTest
                 app.MapOpenApi();
                 app.MapScalarApiReference(options =>
                 {
-                    options.Title = "My Api";
+                    options.Title = "Crud";
                     options.Theme = ScalarTheme.BluePlanet;
                 });
             }
