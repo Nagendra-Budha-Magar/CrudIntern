@@ -1,4 +1,6 @@
-﻿namespace CrudTest.Domain.Dtos
+﻿using CrudTest.Domain.Entity;
+
+namespace CrudTest.Domain.Dtos
 {
     public class StudentDto
     {
@@ -6,5 +8,7 @@
         public int Grade { get; set; }
         public string? PhoneNo { get; set; }
         public int RollNo { get; set; }
+
+        public Semester? Semester { get; set; }
     }
 }
