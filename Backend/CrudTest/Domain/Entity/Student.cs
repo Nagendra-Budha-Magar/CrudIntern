@@ -8,7 +8,7 @@
         public string? PhoneNo { get; set; }
         public int RollNo { get; set; }
 
-        public int SemesterId { get; set; }
+        public int? SemesterId { get; set; }
         public Semester? Semester { get; set; }
     }
 }

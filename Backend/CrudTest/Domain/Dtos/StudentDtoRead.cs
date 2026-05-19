@@ -1,13 +1,11 @@
-﻿using CrudTest.Domain.Entity;
-
-namespace CrudTest.Domain.Dtos
+﻿namespace CrudTest.Domain.Dtos
 {
-    public class StudentDto
+    public class StudentDtoRead
     {
         public string? StudentName { get; set; }
         public int Grade { get; set; }
         public string? PhoneNo { get; set; }
         public int RollNo { get; set; }
-        public int? SemesterId { get; set; }
+        public SemesterDto? Semester { get; set; }
     }
 }

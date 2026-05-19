@@ -22,7 +22,8 @@ namespace CrudTest.Application.Services
                 StudentName = dto.StudentName,
                 Grade = dto.Grade,
                 PhoneNo = dto.PhoneNo,
-                RollNo = dto.RollNo
+                RollNo = dto.RollNo,
+                SemesterId = dto.SemesterId
             };
 
             await _studentrepository.InsertStudent(student);
@@ -32,12 +33,13 @@ namespace CrudTest.Application.Services
                 StudentName = dto.StudentName,
                 Grade = dto.Grade,
                 PhoneNo = dto.PhoneNo,
-                RollNo = dto.RollNo
+                RollNo = dto.RollNo,
+                SemesterId= dto.SemesterId
             };
             return result;
         }
 
-        public async Task<StudentDto?> GetStudent(int Id)
+        public async Task<StudentDtoRead?> GetStudent(int Id)
         {
             var student = await _studentrepository.GetStudent(Id);
             if(student is null)
@@ -45,19 +47,23 @@ namespace CrudTest.Application.Services
                 return null;
             }
 
-            var result = new StudentDto
+            var result = new StudentDtoRead
             {
                 StudentName = student.StudentName,
                 Grade = student.Grade,
                 PhoneNo = student.PhoneNo,
-                RollNo = student.RollNo
+                RollNo = student.RollNo,
+                Semester = new SemesterDto
+                {
+                    SemesterName = student.Semester?.SemesterName
+                }
             };
             return result;
         }
 
         public async Task<StudentDto?> UpdateStudent(int Id, StudentDto dto)
         {
-            var student = await _studentrepository.GetStudent(Id);
+            var student = await _studentrepository.FindStudentById(Id);
             if(student is null)
             {
                 return null;
@@ -66,6 +72,7 @@ namespace CrudTest.Application.Services
             student.Grade = dto.Grade;
             student.PhoneNo = dto.PhoneNo;
             student.RollNo = dto.RollNo;
+            student.SemesterId = dto.SemesterId;
 
             await _studentrepository.UpdateStudent(student);
             var result = new StudentDto
@@ -73,14 +80,15 @@ namespace CrudTest.Application.Services
                 StudentName = student.StudentName,
                 Grade = student.Grade,
                 PhoneNo = student.PhoneNo,
-                RollNo = student.RollNo
+                RollNo = student.RollNo,
+                SemesterId = student.SemesterId
             };
             return result;
         }
 
         public async Task<bool> DeleteStudent(int Id)
         {
-            var result = await _studentrepository.GetStudent(Id);
+            var result = await _studentrepository.FindStudentById(Id);
             if(result is null)
             {
                 return false;

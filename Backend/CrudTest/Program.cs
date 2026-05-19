@@ -24,7 +24,9 @@ namespace CrudTest
                 => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddScoped<IStudentrepository, StudentRepository>();
+            builder.Services.AddScoped<ISemesterRepository, SemesterRepository>();
             builder.Services.AddScoped<IStudentService, StudentService>();
+            builder.Services.AddScoped<ISemesterService, SemesterService>();
 
             var app = builder.Build();
 

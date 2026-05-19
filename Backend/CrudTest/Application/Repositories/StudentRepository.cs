@@ -1,5 +1,6 @@
 ﻿using CrudTest.Data;
 using CrudTest.Domain.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrudTest.Application.Repositories
 {
@@ -18,9 +19,16 @@ namespace CrudTest.Application.Repositories
             return entity;
         }
 
-        public async Task<Student?> GetStudent(int Id)
+        public async Task<Student?> FindStudentById(int Id)
         {
             return await _context.Students.FindAsync(Id);
+        }
+
+        public async Task<Student?> GetStudent(int Id)
+        {
+            return await _context.Students
+                .Include(s => s.Semester)
+                .FirstOrDefaultAsync(s => s.Id == Id);
         }
 
         public async Task UpdateStudent(Student student)
