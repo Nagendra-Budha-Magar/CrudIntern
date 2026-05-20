@@ -25,8 +25,10 @@ namespace CrudTest
 
             builder.Services.AddScoped<IStudentrepository, StudentRepository>();
             builder.Services.AddScoped<ISemesterRepository, SemesterRepository>();
+            builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
             builder.Services.AddScoped<IStudentService, StudentService>();
             builder.Services.AddScoped<ISemesterService, SemesterService>();
+            builder.Services.AddScoped<ISubjectService, SubjectService>();
 
             var app = builder.Build();
 

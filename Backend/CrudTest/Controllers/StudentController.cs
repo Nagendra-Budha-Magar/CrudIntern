@@ -25,7 +25,7 @@ namespace CrudTest.Controllers
 
         [HttpGet]
         [Route("{Id:int}")]
-        public async Task<ActionResult> GetStudentById(int Id)
+        public async Task<IActionResult> GetStudentById(int Id)
         {
             var student = await _studentService.GetStudent(Id);
             if (student is null)
