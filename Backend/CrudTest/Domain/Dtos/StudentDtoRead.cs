@@ -6,6 +6,6 @@
         public int Grade { get; set; }
         public string? PhoneNo { get; set; }
         public int RollNo { get; set; }
-        public SemesterDto? Semester { get; set; }
+        public SemesterDtoRead? Semester { get; set; }
     }
 }

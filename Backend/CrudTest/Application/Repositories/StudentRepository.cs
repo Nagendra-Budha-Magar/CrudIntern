@@ -1,4 +1,5 @@
 ﻿using CrudTest.Data;
+using CrudTest.Domain.Dtos;
 using CrudTest.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,11 +25,29 @@ namespace CrudTest.Application.Repositories
             return await _context.Students.FindAsync(Id);
         }
 
-        public async Task<Student?> GetStudent(int Id)
+        public async Task<StudentDtoRead?> GetStudent(int Id)
         {
             return await _context.Students
-                .Include(s => s.Semester)
-                .FirstOrDefaultAsync(s => s.Id == Id);
+                .Where(s => s.Id == Id)
+                .Select(s => new StudentDtoRead
+                {
+                    StudentName = s.StudentName,
+                    Grade = s.Grade,
+                    PhoneNo = s.PhoneNo,
+                    RollNo = s.RollNo,
+                    Semester = new SemesterDtoRead
+                    {
+                        SemesterName = s.Semester!.SemesterName,
+                        SubjectsDto = s.Semester.Subjects
+                        .Select(sub => new SubjectDto
+                        {
+                            SubjectName = sub.SubjectName,
+                            Description = sub.Description,
+                            SubjectCode = sub.SubjectCode,
+                            SemesterId = sub.SemesterId
+                        }).ToList()
+                    }
+                }).FirstOrDefaultAsync();
         }
 
         public async Task UpdateStudent(Student student)

@@ -46,19 +46,7 @@ namespace CrudTest.Application.Services
             {
                 return null;
             }
-
-            var result = new StudentDtoRead
-            {
-                StudentName = student.StudentName,
-                Grade = student.Grade,
-                PhoneNo = student.PhoneNo,
-                RollNo = student.RollNo,
-                Semester = new SemesterDto
-                {
-                    SemesterName = student.Semester?.SemesterName
-                }
-            };
-            return result;
+            return student;
         }
 
         public async Task<StudentDto?> UpdateStudent(int Id, StudentDto dto)
