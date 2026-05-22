@@ -39,6 +39,11 @@ namespace CrudTest.Application.Services
             return result;
         }
 
+        public async Task<List<StudentDtoRead>> GetAllStudents()
+        {
+            return await _studentrepository.GetAllStudents();
+        }
+
         public async Task<StudentDtoRead?> GetStudent(int Id)
         {
             var student = await _studentrepository.GetStudent(Id);

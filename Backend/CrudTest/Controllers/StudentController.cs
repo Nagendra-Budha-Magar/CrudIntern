@@ -24,6 +24,17 @@ namespace CrudTest.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> GetAllStudents()
+        {
+            var students = await _studentService.GetAllStudents();
+
+            if (!students.Any())
+                return NotFound("No students found.");
+
+            return Ok(students);
+        }
+
+        [HttpGet]
         [Route("{Id:int}")]
         public async Task<IActionResult> GetStudentById(int Id)
         {

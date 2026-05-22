@@ -20,6 +20,31 @@ namespace CrudTest.Application.Repositories
             return entity;
         }
 
+        public async Task<List<StudentDtoRead>> GetAllStudents()
+        {
+            return await _context.Students
+                .Select(s => new StudentDtoRead
+                {
+                    StudentName = s.StudentName,
+                    Grade = s.Grade,
+                    PhoneNo = s.PhoneNo,
+                    RollNo = s.RollNo,
+                    Semester = new SemesterDtoRead
+                    {
+                        SemesterName = s.Semester!.SemesterName,
+                        SubjectsDto = s.Semester.Subjects
+                            .Select(sub => new SubjectDto
+                            {
+                                SubjectName = sub.SubjectName,
+                                Description = sub.Description,
+                                SubjectCode = sub.SubjectCode,
+                                SemesterId = sub.SemesterId
+                            }).ToList()
+                    }
+                })
+                .ToListAsync();
+        }
+
         public async Task<Student?> FindStudentById(int Id)
         {
             return await _context.Students.FindAsync(Id);
