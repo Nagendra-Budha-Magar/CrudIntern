@@ -20,7 +20,6 @@ namespace CrudTest.Application.Services
             var student = new Student
             {
                 StudentName = dto.StudentName,
-                Grade = dto.Grade,
                 PhoneNo = dto.PhoneNo,
                 RollNo = dto.RollNo,
                 SemesterId = dto.SemesterId
@@ -31,7 +30,6 @@ namespace CrudTest.Application.Services
             var result = new StudentDto
             {
                 StudentName = dto.StudentName,
-                Grade = dto.Grade,
                 PhoneNo = dto.PhoneNo,
                 RollNo = dto.RollNo,
                 SemesterId= dto.SemesterId
@@ -62,7 +60,6 @@ namespace CrudTest.Application.Services
                 return null;
             }
             student.StudentName = dto.StudentName;
-            student.Grade = dto.Grade;
             student.PhoneNo = dto.PhoneNo;
             student.RollNo = dto.RollNo;
             student.SemesterId = dto.SemesterId;
@@ -71,7 +68,6 @@ namespace CrudTest.Application.Services
             var result = new StudentDto
             {
                 StudentName = student.StudentName,
-                Grade = student.Grade,
                 PhoneNo = student.PhoneNo,
                 RollNo = student.RollNo,
                 SemesterId = student.SemesterId

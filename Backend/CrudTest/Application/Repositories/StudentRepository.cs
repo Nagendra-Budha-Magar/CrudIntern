@@ -25,8 +25,8 @@ namespace CrudTest.Application.Repositories
             return await _context.Students
                 .Select(s => new StudentDtoRead
                 {
+                    Id = s.Id,
                     StudentName = s.StudentName,
-                    Grade = s.Grade,
                     PhoneNo = s.PhoneNo,
                     RollNo = s.RollNo,
                     Semester = new SemesterDtoRead
@@ -56,8 +56,8 @@ namespace CrudTest.Application.Repositories
                 .Where(s => s.Id == Id)
                 .Select(s => new StudentDtoRead
                 {
+                    Id = s.Id,
                     StudentName = s.StudentName,
-                    Grade = s.Grade,
                     PhoneNo = s.PhoneNo,
                     RollNo = s.RollNo,
                     Semester = new SemesterDtoRead
